@@ -10,9 +10,13 @@ const routes = express.Router();
 routes.route('/jadwal')
     .get(jadwalInspeksiController.getAllJadwalInspeksi)
 
+routes.route('/jadwal/:id')
+    .get(jadwalInspeksiController.getJadwalById)
+
 routes.route('/hasil')
     .get(hasilInspeksiController.getAllHasilInspeksi)
+    
+routes.route('/hasil/:id')
     .post([auth.verifyToken, validasi.checkJabatanTeknisi], hasilInspeksiController.createHasilInspeksi);
-
 
 export default routes;

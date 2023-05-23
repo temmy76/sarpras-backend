@@ -1,4 +1,5 @@
 import hasilInspeksiModel from "../models/hasilInspeksi.js";
+import suratPerintahModel from "../models/suratPerintah.js";
 import response from "../helper/response.js";
 
 export default {
@@ -11,29 +12,20 @@ export default {
         }
     },
     createHasilInspeksi: async (req, res) => {
-        const hasilInspeksi = new hasilInspeksiModel(req.body);
+        const { id } = req.params;
+        const hasilInspeksi = new hasilInspeksiModel({
+            jadwal_id: id,
+            ...req.body,
+        });
         hasilInspeksi.toUpperCase();
+        const suratPerintah = await suratPerintahModel.findOne({ tanggal: id });
+        suratPerintah.status = "SELESAI";
         try {
             const savedHasilInspeksi = await hasilInspeksi.save();
+            await suratPerintah.save();
             response.sendCreated(res, savedHasilInspeksi);
         } catch (error) {
             response.sendBadRequest(res, error.message);
         }
     },
-    verifikasiHasilInspeksi: async (req, res) => {
-        const { id } = req.params;
-        const { status } = req.body;
-        try {
-            const hasilInspeksi = await hasilInspeksiModel.findById(id);
-            if (hasilInspeksi) {
-                hasilInspeksi.status = status;
-                await hasilInspeksi.save();
-                response.sendOK(res, hasilInspeksi);
-            } else {
-                response.sendNotFound(res, "Hasil Inspeksi tidak ditemukan");
-            }
-        } catch (error) {
-            response.sendBadRequest(res, error.message);
-        }
-    }
 }
