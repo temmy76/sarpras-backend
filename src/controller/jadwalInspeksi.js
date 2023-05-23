@@ -1,5 +1,4 @@
 import jadwalInspeksiModel from "../models/jadwalInspeksi.js";
-import suratPerintahModel from "../models/suratPerintah.js";
 import response from "../helper/response.js";
 
 export default {

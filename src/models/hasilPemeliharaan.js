@@ -8,10 +8,6 @@ const hasilPemeliharaan = new mongoose.Schema({
 	},
 	detail: [
 		{
-			no_item: {
-				required: true,
-				type: Number,
-			},
 			vendor: {
 				type: String,
 				required: true,
@@ -36,5 +32,8 @@ const hasilPemeliharaan = new mongoose.Schema({
 	],
 	catatan: String,
 });
+
+
+
 
 export default mongoose.model("hasilPemeliharaan", hasilPemeliharaan);

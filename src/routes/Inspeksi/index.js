@@ -15,8 +15,7 @@ routes.route('/jadwal/:id')
 
 routes.route('/hasil')
     .get(hasilInspeksiController.getAllHasilInspeksi)
-    
-routes.route('/hasil/:id')
     .post([auth.verifyToken, validasi.checkJabatanTeknisi], hasilInspeksiController.createHasilInspeksi);
+    
 
 export default routes;

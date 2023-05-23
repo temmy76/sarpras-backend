@@ -42,7 +42,7 @@ export default {
             jadwalBody.prioritas = jadwalBody.prioritas.toUpperCase();
             jadwal = new jadwalPemeliharaanModel(jadwalBody);
         }
-        suratPerintah.tanggal = jadwal._id;
+        suratPerintah.jadwal_id = jadwal._id;
         jadwal.surat_id = suratPerintah._id;
 
         try {

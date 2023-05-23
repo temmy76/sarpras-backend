@@ -7,7 +7,7 @@ const suratPerintah = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "users"
     },
-    tanggal: {
+    jadwal_id: {
         type: mongoose.Schema.Types.ObjectId,
         refPath: "refJadwal",
         required: true,

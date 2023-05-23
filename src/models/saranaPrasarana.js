@@ -25,12 +25,6 @@ const saranaPrasarana = new mongoose.Schema({
             lebar: Number,
         },
     },
-    // terakhir_diperiksa: {
-    //     required: true,
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "hasilinspeksis",
-    // },
-    terakhir_diperiksa: Date
 });
 
 saranaPrasarana.methods.toUpperCase = function () {
