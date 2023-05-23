@@ -7,9 +7,13 @@ const hasilInspeksi = new mongoose.Schema({
         ref: "jadwalinspeksis"
     },
     detail: [{
-        required: true,
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "saranaprasaranas",
+        deskripsi: String,
+        kerusakan: {
+            type: String,
+            enum: ['RINGAN', 'SEDANG', 'BERAT', 'TIDAK ADA'],
+            default: 'TIDAK ADA',
+        },
+        bukti: String,
     }],
     status: {
         type: String,
@@ -20,6 +24,9 @@ const hasilInspeksi = new mongoose.Schema({
 
 hasilInspeksi.methods.toUpperCase = function () {
     this.status = this.status.toUpperCase();
+    this.detail.forEach((item) => {
+        item.kerusakan = item.kerusakan.toUpperCase();
+    }); 
 };
 
 export default mongoose.model("hasilInspeksi", hasilInspeksi);

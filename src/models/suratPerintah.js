@@ -22,9 +22,12 @@ const suratPerintah = new mongoose.Schema({
         enum: ['INSPEKSI', 'PEMELIHARAAN']
     },
     items: [{
+        // no_item: Number,
+        // saranaPrasarana_id: {
         required: true,
         type: mongoose.Schema.Types.ObjectId,
         ref: "saranaprasaranas",
+        // }
     }],
     status: {
         type: String,
@@ -51,10 +54,6 @@ suratPerintah.methods.approveSuratPerintah = async function (status) {
 
     this.status = status;
     return 200;
-};
-
-suratPerintah.methods.toDate = function () {
-    this.tanggal = new Date(this.tanggal);
 };
 
 suratPerintah.methods.toUpperCase = function () {

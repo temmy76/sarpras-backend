@@ -1,4 +1,4 @@
-import jadwalInspeksiModel from "../model/jadwalInspeksi.js";
+import jadwalInspeksiModel from "../models/jadwalInspeksi.js";
 import response from "../helper/response.js";
 
 export default {
