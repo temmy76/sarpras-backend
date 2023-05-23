@@ -31,10 +31,10 @@ export default {
        });
     },
 
-    sendNotFound:(res) => {
+    sendNotFound:(res, message) => {
         return res.status(404).send({
             success: false,
-            message: 'Resource not found.'
+            message: message || 'Resource not found.'
         });
     },
 

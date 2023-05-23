@@ -1,4 +1,5 @@
 import jadwalInspeksiModel from "../models/jadwalInspeksi.js";
+import suratPerintahModel from "../models/suratPerintah.js";
 import response from "../helper/response.js";
 
 export default {
@@ -10,4 +11,13 @@ export default {
             response.sendForbidden(res, error.message);
         }
     },
+    getJadwalById: async (req, res) => {
+        const { id } = req.params;
+        try {
+            const jadwalInspeksi = await jadwalInspeksiModel.findById(id);
+            response.sendOK(res, jadwalInspeksi);
+        } catch (error) {
+            response.sendBadRequest(res, error.message);
+        }
+    }
 }
