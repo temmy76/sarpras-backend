@@ -11,9 +11,9 @@ export default {
         }
     },
     create: async (req, res) => {
+        const newUser = new userModel(req.body);
+        newUser.toUpperCase();
         try {
-            const newUser = new userModel(req.body);
-            newUser.jabatan = newUser.jabatan || "teknisi";
             const savedUser = await newUser.save();
             response.sendCreated(res, savedUser);
         } catch (error) {

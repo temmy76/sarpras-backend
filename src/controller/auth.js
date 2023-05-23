@@ -9,16 +9,16 @@ const tokenLife = parseInt(process.env.JWT_TOKEN_LIFE);
 
 export default {
     authenticate: async (req, res) => {
-        
         const user = await userModel.findOne({ username: req.body.username })
         if (!user) {
             response.sendUnauthorized(res, "Authentication failed. User not found.");
         } else if (user) {
             user.verifyPassword(req.body.password, (err, isMatch) => {
                 if (isMatch) {
-                    const token = jwt.sign(user.getTokenData(), privateKey, {
-                        expiresIn: tokenLife
-                    });
+                    // const token = jwt.sign(user.getTokenData(), privateKey, {
+                    //     expiresIn: tokenLife
+                    // });
+                    const token = jwt.sign(user.getTokenData(), privateKey);
 
                     res.json({
                         succes: true,

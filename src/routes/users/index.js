@@ -6,7 +6,7 @@ import auth from '../../controller/auth.js';
 const routes = express.Router();
 
 routes.route('/')
-    .get(auth.verifyToken, users.index)
-    .post(users.create);
+    .get(users.index)
+    .post(auth.verifyToken, users.create);
 
 export default routes;

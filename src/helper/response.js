@@ -2,6 +2,7 @@ export default {
     sendOK :(res, data) => {
         return res.status(200).send(data);
     },
+
     sendCreated :(res, data) => {
         return res.status(201).send(data);
     },
@@ -20,11 +21,11 @@ export default {
         });
     },
 
-    sendForbidden:(res) => {
+    sendForbidden:(res, message) => {
         return res.status(403).send({
             success: false,
-            message: 'You do not have rights to access this resource.'
-        });
+            message: message || 'You do not have rights to access this resource.'
+       });
     },
 
     sendNotFound:(res) => {
@@ -38,5 +39,12 @@ export default {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, X-Access-Token, Content-Type, Accept");
         next();
+    },
+
+    sendUnprocessableEntity:(res, message) => {
+        return res.status(422).send({
+            success: false,
+            message: message
+        });
     }
 }

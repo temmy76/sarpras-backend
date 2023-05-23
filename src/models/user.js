@@ -2,10 +2,23 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    username: String,
-    password: String,
-    jabatan: String,
+    nama: {
+        type: String,
+        required: true,
+    },
+    username: {
+        type: String,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    jabatan: {
+        type: String,
+        enum: ['SUB BAG TU', 'TEKNISI', 'WADIR2'],
+        default: 'TEKNISI',
+    },
 });
 
 userSchema.pre('save', function (next) {
@@ -32,6 +45,11 @@ userSchema.methods.verifyPassword = function (candidatePassword, callback) {
         callback(null, isMatch);
     });
 };
+
+userSchema.methods.toUpperCase = function () {
+    this.jabatan = this.jabatan.toUpperCase();
+};
+
 
 export default mongoose.model("user", userSchema);
 
