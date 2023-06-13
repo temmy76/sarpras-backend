@@ -7,6 +7,9 @@ import response from "../helper/response.js";
 export default {
 	getAllHasilPemeliharaan: async (req, res) => {
 		try {
+
+
+
 			const hasilPemeliharaan = await hasilPemeliharaanModel.find();
 			response.sendOK(res, hasilPemeliharaan);
 		} catch (error) {
